@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESMO 2026 主席研討會 (Presidential Symposia) 12項 LBA 全景總表</title>
+  <style>
+    :root {
+      --primary: #0f172a;
+      --accent: #0284c7;
+      --accent-light: #e0f2fe;
+      --china-bg: #fef2f2;
+      --china-text: #dc2626;
+      --china-border: #fecaca;
+      --gigu-bg: #ecfdf5;
+      --gigu-text: #059669;
+      --gigu-border: #a7f3d0;
+      --pos-bg: #f0fdf4;
+      --pos-text: #15803d;
+      --tbd-bg: #fffbeb;
+      --tbd-text: #b45309;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+    }
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: #ffffff;
+      padding: 28px 32px;
+    }
+    header h1 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    header p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+    .badge-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .stat-pill {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #f8fafc;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 32px;
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #334155;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover {
+      background: #e2e8f0;
+    }
+    .filter-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+    .search-box {
+      flex: 1;
+      min-width: 240px;
+      max-width: 360px;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 9px 14px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .search-box input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+    .scroll-hint {
+      padding: 10px 32px;
+      background: #fffbeb;
+      color: #92400e;
+      font-size: 0.85rem;
+      border-bottom: 1px solid #fde68a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    /* 核心捲軸容器：支援水平與垂直雙向滑動 + 固定表頭與首欄 */
+    .table-scroll-wrapper {
+      width: 100%;
+      max-height: 72vh;
+      overflow: auto;
+      position: relative;
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 1350px;
+      font-size: 0.9rem;
+    }
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #1e293b;
+      color: #ffffff;
+      font-weight: 600;
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 2px solid #0f172a;
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      background: #ffffff;
+    }
+    tbody tr:hover td {
+      background-color: #f8fafc;
+    }
+    /* 固定左側「摘要代號」欄，方便左右捲動時對照 */
+    th.sticky-col, td.sticky-col {
+      position: sticky;
+      left: 0;
+      z-index: 10;
+      border-right: 2px solid #cbd5e1;
+    }
+    thead th.sticky-col {
+      z-index: 30;
+    }
+    .lba-badge {
+      display: inline-block;
+      background: #0f172a;
+      color: #ffffff;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+    }
+    .session-tag {
+      display: block;
+      font-size: 0.78rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+    .tag-china {
+      background: var(--china-bg);
+      color: var(--china-text);
+      border: 1px solid var(--china-border);
+    }
+    .tag-gigu {
+      background: var(--gigu-bg);
+      color: var(--gigu-text);
+      border: 1px solid var(--gigu-border);
+    }
+    .tag-pos {
+      background: var(--pos-bg);
+      color: var(--pos-text);
+      border: 1px solid #bbf7d0;
+    }
+    .tag-tbd {
+      background: var(--tbd-bg);
+      color: var(--tbd-text);
+      border: 1px solid #fde68a;
+    }
+    .trial-title {
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 0.96rem;
+      margin-bottom: 4px;
+    }
+    .drug-name {
+      color: #0369a1;
+      font-weight: 600;
+      font-size: 0.86rem;
+    }
+    ul.Takeaways {
+      padding-left: 16px;
+      margin-top: 6px;
+    }
+    ul.Takeaways li {
+      margin-bottom: 4px;
+    }
+    footer {
+      padding: 16px 32px;
+      background: #f1f5f9;
+      color: #64748b;
+      font-size: 0.82rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    /* 手機版（≤768px）：表格改卡片排版、免橫向捲動；桌機版維持原樣 */
+    @media (max-width: 768px) {
+      body { padding: 0; }
+      .container { border-radius: 0; box-shadow: none; }
+      header { padding: 20px 16px; }
+      header h1 { font-size: 1.25rem; }
+      .controls { padding: 16px; }
+      .filter-btn { min-height: 44px; }
+      .search-box { flex-basis: 100%; min-width: 0; max-width: none; }
+      .search-box input { min-height: 44px; font-size: 1rem; }
+      .scroll-hint { display: none; }
+      .table-scroll-wrapper { max-height: none; overflow: visible; }
+      table { min-width: 0; }
+      thead { display: none; }
+      table, tbody, tr, td { display: block; }
+      tbody tr {
+        margin: 12px 16px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      tbody td { padding: 10px 14px; }
+      tbody tr td:last-child { border-bottom: none; }
+      td.sticky-col {
+        position: static;
+        border-right: none;
+        background: #f1f5f9;
+      }
+      tbody tr:hover td { background-color: #ffffff; }
+      tbody tr:hover td.sticky-col { background-color: #f1f5f9; }
+      td[data-label]::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #64748b;
+        margin-bottom: 4px;
+      }
+      td.sticky-col::before { display: none; }
+      .lba-badge { margin: 0 8px 0 0; }
+      .session-tag { display: inline; margin-right: 8px; }
+      footer { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>ESMO 2026 主席研討會 (Presidential Symposia) 12 項 LBA 全景總表</h1>
+    <p>2026年10月23日–27日｜西班牙馬德里 (Alicante Auditorium - Hall 6)｜臨床設計、頂線結果與產業看點深度整合</p>
+    <div class="badge-bar">
+      <span class="stat-pill">🔥 3 場主席專場 (Symposium I / II / III)</span>
+      <span class="stat-pill">🌏 5 項中國原研資產登台 (LBA6, 7, 8, 9, 11)</span>
+      <span class="stat-pill">🎯 4 項 GI / GU 關鍵突破 (LBA2, 4, 7, 8)</span>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="filter-group">
+      <button class="filter-btn active" onclick="filterTable('all', this)">全部顯示 (12)</button>
+      <button class="filter-btn" onclick="filterTable('sym1', this)">Presidential I (10/24)</button>
+      <button class="filter-btn" onclick="filterTable('sym2', this)">Presidential II (10/25)</button>
+      <button class="filter-btn" onclick="filterTable('sym3', this)">Presidential III (10/26)</button>
+      <button class="filter-btn" onclick="filterTable('gigu', this)">聚焦 GI & GU (4)</button>
+      <button class="filter-btn" onclick="filterTable('china', this)">中國原研授權資產 (5)</button>
+    </div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="🔍 搜尋藥物、試驗名稱、癌別或藥廠..." onkeyup="searchTable()">
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>↔️ <strong>捲軸提示：</strong>表格支援上下與左右滑動（首欄 LBA 代號與頂部表頭已鎖定，方便對照閱讀）。</span>
+  </div>
+
+  <div class="table-scroll-wrapper">
+    <table id="lbaTable">
+      <thead>
+        <tr>
+          <th class="sticky-col" style="width: 130px;">代號 & 場次</th>
+          <th style="width: 140px;">癌別領域</th>
+          <th style="width: 220px;">試驗名稱 & 藥物機轉</th>
+          <th style="width: 170px;">研發與合作藥廠</th>
+          <th style="width: 160px;">講者 & 點評專家</th>
+          <th style="width: 260px;">適應症與試驗設計</th>
+          <th style="width: 380px;">會前頂線結果 (Top-line) & 大會核心看點</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- LBA1 -->
+        <tr data-tags="sym1">
+          <td class="sticky-col">
+            <span class="lba-badge">LBA1</span>
+            <span class="session-tag">Presidential I</span>
+            <span class="session-tag">10/24 16:30 CEST</span>
+          </td>
+          <td><strong>黑色素瘤</strong><br>Melanoma</td>
+          <td>
+            <div class="trial-title">INTerpath-001</div>
+            <div class="drug-name">Intismeran autogene (V940，個體化 mRNA 疫苗) + Pembro</div>
+          </td>
+          <td>Moderna / MSD<br><small>全球多中心 III 期</small></td>
+          <td><strong>講者：</strong>Georgina Long<br><strong>點評：</strong>Inge Marie Svane</td>
+          <td>完全切除後高危 IIB–IV 期黑色素瘤輔助治療 (n=1,137)：V940 + Pembro vs 安慰劑 + Pembro。</td>
+          <td>
+            <span class="tag tag-pos">RFS & DMFS 雙陽性</span>
+            <ul class="Takeaways">
+              <li><strong>歷史突破：</strong>首個陽性的個體化 mRNA 腫瘤疫苗 III 期研究（對比同年 BNT113 頭頸癌 PFS 未達標）。</li>
+              <li><strong>核心看點：</strong>RFS/DMFS HR 能否維持 II 期 (0.51/0.38) 水準，以及個體化疫苗特有的<strong>製造失敗/未給藥比例</strong>。</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- LBA2 -->
+        <tr data-tags="sym1 gigu">
+          <td class="sticky-col">
+            <span class="lba-badge">LBA2</span>
+            <span class="session-tag">Presidential I</span>
+            <span class="session-tag">10/24 16:54 CEST</span>
+          </td>
+          <td><span class="tag tag-gigu">GU 重磅</span><br><strong>膀胱癌 (MIBC)</strong></td>
+          <td>
+            <div class="trial-title">VOLGA</div>
+            <div class="drug-name">Enfortumab Vedotin (EV) + Durvalumab ± Tremelimumab</div>
+          </td>
+          <td>AstraZeneca / Astellas / Pfizer<br><small>全球多中心 III 期</small></td>
+          <td><strong>講者：</strong>Thomas Powles<br><strong>點評：</strong>Michiel Van Der Heijden</td>
+          <td>不適合或拒絕順鉑之肌肉侵犯型膀胱癌 (MIBC) 圍手術期治療。</td>
+          <td>
+            <span class="tag tag-pos">雙藥組 EFS & OS 雙陽性</span>
+            <ul class="Takeaways">
+              <li><strong>關鍵對照：</strong>不含 Tremelimumab 組 (EV+Durva) EFS/OS 雙陽性，與順鉑適用人群 KEYNOTE-866 (Pembro+化療) EFS 未達標形成強烈對比。</li>
+              <li><strong>核心看點：</strong>關注治療完成率、手術結局與三藥組毒性權衡。</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- LBA3 -->
+        <tr data-tags="sym1">
+          <td class="sticky-col">
+            <span class="lba-badge">LBA3</span>
+            <span class="session-tag">Presidential I</span>
+            <span class="session-tag">10/24 17:18 CEST</span>
+          </td>
+          <td><strong>小細胞肺癌</strong><br>ES-SCLC</td>
+          <td>
+            <div class="trial-title">DeLLphi-305</div>
+            <div class="drug-name">Tarlatamab (DLL3 TCE) + Durvalumab</div>
+          </td>
+          <td>Amgen<br><small>全球多中心 III 期</small></td>
+          <td><strong>講者：</strong>Jacob Sands<br><strong>點評：</strong>Stephen Liu</td>
+          <td>廣泛期 SCLC 完成一線含鉑化療+Durva 誘導後未進展之<strong>一線維持治療</strong> (n=563) vs Durva 單藥。</td>
+          <td>
+            <span class="tag tag-pos">OS / PFS / ORR 全面陽性</span>
+            <ul class="Takeaways">
+              <li><strong>戰線前移：</strong>將 DLL3 T細胞銜接抗體推向一線維持，可及人群翻倍，並直接擠壓後線 DLL3 藥物的入組與市場空間。</li>
+              <li><strong>核心看點：</strong>OS HR 能否 ≤0.75，以及維持期 CRS/ICANS 與住院監測要求。</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- LBA4 -->
+        <tr data-tags="sym1 gigu">
+          <td class="sticky-col">
+            <span class="lba-badge">LBA4</span>
+            <span class="session-tag">Presidential I</span>
+            <span class="session-tag">10/24 17:42 CEST</span>
+          </td>
+          <td><span class="tag tag-gigu">GU 重磅</span><br><strong>攝護腺癌</strong></td>
+          <td>
+            <div class="trial-title">DASL-HiCaP (ANZUP1801)</div>
+            <div class="drug-name">Darolutamide + ADT + 放療 (RT)</div>
+          </td>
+          <td>ANZUP / Bayer<br><small>國際多中心 III 期</small></td>
+          <td><strong>講者：</strong>Tamim Niazi<br><strong>點評：</strong>Silke Gillessen</td>
+          <td>極高風險局部攝護腺癌接受根治性或挽救性放療 + ADT 併用 Darolutamide vs 安慰劑。</td>
+          <td>
+            <span class="tag tag-tbd">結果待大會現場揭曉</span>
+            <ul class="Takeaways">
+              <li><strong>核心看點：</strong>評估二代 AR 抑制劑前移至局部極高風險放療階段，能否顯著改善無轉移存活期 (MFS) 與長期控制，並檢視新增治療負擔。</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- LBA5 -->
+        <tr data-tags="sym2">
+          <td class="sticky-col">
+            <span class="lba-badge">LBA5</span>
+            <span class="session-tag">Presidential II</span>
+            <span class="session-tag">10/25 16:30 CET</span>
+          </td>
+          <td><strong>非小細胞肺癌</strong><br>KRAS G12C NSCLC</td>
+          <td>
+            <div class="trial-title">Krascendo 1</div>
+            <div class="drug-name">Divarasib vs Sotorasib / Adagrasib</div>
+          </td>
+          <td>Roche<br><small>全球多中心 III 期</small></td>
+          <td><strong>講者：</strong>Ferdinandos Skoulidis<br><strong>點評：</strong>Benjamin Besse</td>
+          <td>經治晚期 KRAS G12C 突變 NSCLC 頭對頭直接比較已上市一代 G12C 抑制劑。</td>
+          <td>
+            <span class="tag tag-pos">PFS & OS 頭對頭雙陽性</span>
+            <ul class="Takeaways">
+              <li><strong>同類最優：</strong>首個擊敗已上市 KRAS G12C 抑制劑的頭對頭 III 期試驗，確立 BIC 地位並拉高後進者有效對照門檻。</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- LBA6 -->
+        <tr data-tags="sym2 china">
+          <td class="sticky-col">
+            <span class="lba-badge">LBA6</span>
+            <span class="session-tag">Presidential II</span>
+            <span class="session-tag">10/25 16:54 CET</span>
+          </td>
+          <td><span class="tag tag-china">中國原研</span><br><strong>非小細胞肺癌</strong></td>
+          <td>
+            <div class="trial-title">SAFFRON</div>
+            <div class="drug-name">Savolitinib (賽沃替尼) + Osimertinib</div>
+          </td>
+          <td>和黃醫藥 / AstraZeneca<br><small>全球多中心 III 期</small></td>
+          <td><strong>講者：</strong>陸舜 (Shun Lu)<br><strong>點評：</strong>Natasha Leighl</td>
+          <td>奧希替尼進展後伴高水平 MET 過表達及/或擴增之 EGFRm NSCLC (n=338) vs 含鉑化療。</td>
+          <td>
+            <span class="tag tag-pos">PFS & OS 雙陽性｜已交 FDA 申報</span>
+            <ul class="Takeaways">
+              <li><strong>商業里程碑：</strong>AZ 已於 2026年9月底向美國 FDA 提交上市申請。</li>
+              <li><strong>核心看點：</strong>關注 MET 檢測方法與閾值定義，並與中國一線 SANOVO (LBA69) 互補。</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- LBA7 -->
+        <tr data-tags="sym2 gigu china">
+          <td class="sticky-col">
+            <span class="lba-badge">LBA7</span>
+            <span class="session-tag">Presidential II</span>
+            <span class="session-tag">10/25 17:18 CET</span>
+          </td>
+          <td><span class="tag tag-gigu">GI 重磅</span><span class="tag tag-china">中國原研</span><br><strong>胃/胃食道癌</strong></td>
+          <td>
+            <div class="trial-title">CLARITY-Gastric 01</div>
+            <div class="drug-name">Sonesitatug vedotin (Sone-Ve / CMG901, CLDN18.2 ADC)</div>
+          </td>
+          <td>康諾亞·樂普 KYM / AstraZeneca<br><small>全球多中心 III 期</small></td>
+          <td><strong>講者：</strong>徐瑞華 (Rui-Hua Xu)<br><strong>點評：</strong>Salah-Eddin Al-Batran</td>
+          <td>2L+ CLDN18.2 陽性 (≥20–25% 表達) 晚期胃/胃食道腺癌 (n=594) vs 2L 雷莫西尤+紫杉醇 / 3L+ 化療。</td>
+          <td>
+            <span class="tag tag-pos">3L+ & 總體 OS 陽性</span><span class="tag tag-tbd">總體 PFS 未達顯著</span>
+            <ul class="Takeaways">
+              <li><strong>核心博弈：</strong>OS 獲益需與 PFS 未達顯著並讀；<strong>2L 單線亞組表現與不同表達強度數據</strong>將決定二線准入與商業天花板。</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- LBA8 -->
+        <tr data-tags="sym2 gigu china">
+          <td class="sticky-col">
+            <span class="lba-badge">LBA8</span>
+            <span class="session-tag">Presidential II</span>
+            <span class="session-tag">10/25 17:42 CET</span>
+          </td>
+          <td><span class="tag tag-gigu">GI 重磅</span><span class="tag tag-china">中國原研</span><br><strong>膽道癌 (BTC)</strong></td>
+          <td>
+            <div class="trial-title">HARMONi-GI1</div>
+            <div class="drug-name">Ivonescimab (依沃西, PD-1/VEGF 雙抗) + 化療</div>
+          </td>
+          <td>康方生物 / Summit<br><small>中國多中心 III 期</small></td>
+          <td><strong>講者：</strong>周儉 (Jian Zhou)<br><strong>點評：</strong>James Harding</td>
+          <td>一線晚期膽道癌 (n=682) 雙盲 III 期：依沃西 + 化療 <strong>頭對頭</strong> Durvalumab + 化療。</td>
+          <td>
+            <span class="tag tag-pos">OS / PFS / ORR 頭對頭全面優效</span>
+            <ul class="Takeaways">
+              <li><strong>改寫標準：</strong>首個在消化道腫瘤頭對頭擊敗 PD-L1+化療取得 OS 優效的雙抗三期。</li>
+              <li><strong>產業聯動：</strong>促成 AZ 投資 Summit 20 億美元共同開發「Sone-Ve + 依沃西」GI 聯合療法。</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- LBA9 -->
+        <tr data-tags="sym3 china">
+          <td class="sticky-col">
+            <span class="lba-badge">LBA9</span>
+            <span class="session-tag">Presidential III</span>
+            <span class="session-tag">10/26 16:30 CET</span>
+          </td>
+          <td><span class="tag tag-china">中國原研</span><br><strong>骨肉瘤 (外推攝護腺癌)</strong></td>
+          <td>
+            <div class="trial-title">ARTEMIS-011</div>
+            <div class="drug-name">Risvutatug rezetecan (Ris-Rez / HS-20093, B7-H3 ADC)</div>
+          </td>
+          <td>翰森製藥 / GSK<br><small>中國多中心 III 期</small></td>
+          <td><strong>講者：</strong>謝璐 (Lu Xie)</td>
+          <td>多線治療後 (2L+) 晚期骨肉瘤 (n=117)：Ris-Rez vs 吉西他濱 + 多西他賽。</td>
+          <td>
+            <span class="tag tag-pos">IRC-PFS 主要終點陽性</span>
+            <ul class="Takeaways">
+              <li><strong>跨瘤種驗證：</strong>全球首個 III 期陽性的 B7-H3 ADC；為 GSK 全球 11 項 III 期（含 SCLC 與 <strong>mCRPC/mHSPC 攝護腺癌</strong>）提供驗證，重點看 ILD 與血液毒性。</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- LBA10 -->
+        <tr data-tags="sym3">
+          <td class="sticky-col">
+            <span class="lba-badge">LBA10</span>
+            <span class="session-tag">Presidential III</span>
+            <span class="session-tag">10/26 16:54 CET</span>
+          </td>
+          <td><strong>跨癌別實體瘤</strong><br>Pan-tumor</td>
+          <td>
+            <div class="trial-title">MOIO</div>
+            <div class="drug-name">免疫檢查點抑制劑 (ICI) 延長給藥間隔</div>
+          </td>
+          <td>UNICANCER<br><small>法國多中心 III 期</small></td>
+          <td><strong>講者：</strong>Gwenaëlle Gravis</td>
+          <td>晚期實體瘤免疫治療緩解後，延長給藥間隔 vs 標準給藥頻率之 III 期非劣效研究。</td>
+          <td>
+            <span class="tag tag-tbd">結果待大會現場揭曉</span>
+            <ul class="Takeaways">
+              <li><strong>核心看點：</strong>關注非劣效界值與隨訪復發率，直接關係到患者就診負擔、醫保支出與免疫藥物長期實際使用量。</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- LBA11 -->
+        <tr data-tags="sym3 china">
+          <td class="sticky-col">
+            <span class="lba-badge">LBA11</span>
+            <span class="session-tag">Presidential III</span>
+            <span class="session-tag">10/26 17:18 CET</span>
+          </td>
+          <td><span class="tag tag-china">中國原研</span><br><strong>子宮內膜癌 (EC)</strong></td>
+          <td>
+            <div class="trial-title">TroFuse-005</div>
+            <div class="drug-name">Sacituzumab tirumotecan (sac-TMT / SKB264, TROP2 ADC)</div>
+          </td>
+          <td>科倫博泰 / MSD<br><small>全球多中心 III 期</small></td>
+          <td><strong>講者：</strong>Domenica Lorusso</td>
+          <td>含鉑化療與 PD-(L)1 經治之晚期子宮內膜癌 (n=776)：sac-TMT vs 多柔比星或紫杉醇。</td>
+          <td>
+            <span class="tag tag-pos">OS & PFS 雙主要終點陽性</span>
+            <ul class="Takeaways">
+              <li><strong>全球里程碑：</strong>sac-TMT 18 項全球 III 期中首個讀出的研究；重點驗證<strong>東西方人群療效一致性</strong>及激素漱口水預防口腔黏膜炎效果。</li>
+            </ul>
+          </td>
+        </tr>
+        <!-- LBA12 -->
+        <tr data-tags="sym3">
+          <td class="sticky-col">
+            <span class="lba-badge">LBA12</span>
+            <span class="session-tag">Presidential III</span>
+            <span class="session-tag">10/26 17:42 CET</span>
+          </td>
+          <td><strong>子宮內膜癌</strong><br>dMMR EC</td>
+          <td>
+            <div class="trial-title">KEYNOTE-C93</div>
+            <div class="drug-name">Pembrolizumab 單藥 vs 化療</div>
+          </td>
+          <td>MSD<br><small>全球多中心 III 期</small></td>
+          <td><strong>講者：</strong>待公布</td>
+          <td>dMMR 晚期或復發性子宮內膜癌一線治療：Pembro 單藥 vs 卡鉑 + 紫杉醇。</td>
+          <td>
+            <span class="tag tag-pos">PFS 陽性 (OS 尚未成熟)</span>
+            <ul class="Takeaways">
+              <li><strong>核心看點：</strong>檢驗特定 dMMR 子宮內膜癌一線單用免疫免除化療的可行性與具體適用場景。</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    整理自 ESMO 2026 官方議程手冊與臨床前瞻報告｜僅供學術交流與會議追蹤參考，最終數據以大會現場公布為準。
+  </footer>
+</div>
+
+<script>
+  function filterTable(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const rows = document.querySelectorAll('#lbaTable tbody tr');
+    rows.forEach(row => {
+      const tags = row.getAttribute('data-tags');
+      if (category === 'all' || (tags && tags.includes(category))) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
+  function searchTable() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const rows = document.querySelectorAll('#lbaTable tbody tr');
+    rows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      row.style.display = text.includes(input) ? '' : 'none';
+    });
+  }
+
+  // 手機卡片版：把表頭文字寫進每格 data-label，窄螢幕時顯示為欄位標籤
+  const headerLabels = Array.from(document.querySelectorAll('#lbaTable thead th')).map(th => th.textContent.trim());
+  document.querySelectorAll('#lbaTable tbody tr').forEach(row => {
+    Array.from(row.children).forEach((td, i) => {
+      if (headerLabels[i]) td.setAttribute('data-label', headerLabels[i]);
+    });
+  });
+</script>
+
+</body>
+</html>
